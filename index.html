@@ -3,184 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Nilai Edunexa</title>
-    <style>
-        :root { --primary: #25d366; --dark: #128c7e; --bg: #f0f2f5; --brand: #1a73e8; }
-        body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); margin: 0; padding: 15px; padding-bottom: 90px; }
-        
-        .brand-header { text-align: center; padding: 10px 0; margin-bottom: 10px; }
-        .brand-header h1 { margin: 0; font-size: 22px; color: var(--brand); letter-spacing: 1px; text-transform: uppercase; font-weight: 800; }
-        .brand-header p { margin: 0; font-size: 11px; color: #666; font-weight: bold; }
+    <title>Edunexa Pro v8 - Tomy Satria</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Edunexa Pro">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5402/5402377.png">
+    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Edunexa%20Pro%22,%22short_name%22:%22Edunexa%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%23f0f2f5%22,%22theme_color%22:%22%231a73e8%22,%22icons%22:[{%22src%22:%22https://cdn-icons-png.flaticon.com/512/5402/5402377.png%22,%22sizes%22:%22512x512%22,%22type%22:%22image/png%22}]}">
 
-        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #eee; }
-        h3 { margin: 0; color: #333; border-left: 4px solid var(--brand); padding-left: 10px; font-size: 17px; }
+    <style>
+        :root { --primary: #25d366; --brand: #1a73e8; --bg: #f0f2f5; --danger: #dc3545; --gray: #6c757d; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); margin: 0; padding: 12px; padding-bottom: 100px; color: #333; }
         
-        .info-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; }
-        .jml-siswa { font-size: 13px; color: #444; font-weight: bold; }
-        .btn-update-kecil { background: #6c757d; color: white; border: none; padding: 7px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; }
+        .header { text-align: center; padding: 10px 0; }
+        .header h1 { margin: 0; font-size: 22px; color: var(--brand); font-weight: 800; }
+        .header p { margin: 2px; font-size: 11px; color: #666; font-style: italic; }
+
+        .card { background: white; padding: 16px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 15px; }
+        h3 { margin-top: 0; font-size: 14px; border-left: 4px solid var(--brand); padding-left: 10px; color: #444; text-transform: uppercase; margin-bottom: 12px; }
         
-        input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; background: white; }
-        label { font-size: 12px; color: #666; font-weight: bold; margin-left: 5px; }
+        label { font-size: 11px; font-weight: bold; color: #888; margin-left: 5px; }
+        select, input, textarea { width: 100%; padding: 12px; margin: 6px 0 12px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; }
         
-        button { width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; }
-        .btn-kirim { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
-        .btn-kirim:active { transform: scale(0.98); background: var(--dark); }
-        
-        .siswa-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .history-box { background: #f8fafc; padding: 12px; border-radius: 10px; border: 1px dashed #cbd5e1; min-height: 40px; display: flex; flex-wrap: wrap; gap: 6px; }
+        .badge { background: #e2e8f0; color: #475569; padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1px solid #cbd5e1; }
+
+        .siswa-info-flex { display: flex; justify-content: space-between; align-items: center; }
+        .jml-badge { background: var(--brand); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+
+        .siswa-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
         .nama-siswa { flex: 1; font-size: 15px; color: #333; font-weight: 500; }
-        .siswa-input { width: 70px !important; height: 40px; text-align: center; margin: 0 !important; border: 2px solid #eee !important; font-weight: bold; font-size: 17px; border-radius: 6px; }
-        
+        .nilai-input { width: 75px !important; text-align: center; margin: 0 !important; font-weight: bold; border: 2px solid #e2e8f0 !important; color: var(--brand); height: 45px; border-radius: 8px; }
+        .nilai-input:focus { border-color: var(--brand) !important; outline: none; background: #f0f7ff; }
+
+        .footer { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 12px; display: flex; gap: 10px; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); z-index: 100; }
+        button { border: none; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-main { background: var(--primary); color: white; flex: 2; padding: 16px; font-size: 16px; }
+        .btn-side { background: var(--brand); color: white; flex: 1; padding: 16px; font-size: 12px; }
+        .btn-outline { background: #f1f5f9; color: #475569; padding: 10px; border-radius: 10px; font-size: 12px; width: 100%; border: 1px solid #ddd; margin-top: 5px; }
+        .btn-danger { background: #fff5f5; color: var(--danger); border: 1px solid #feb2b2; width: 100%; margin-top: 25px; padding: 12px; font-size: 11px; }
+
         #setupArea { display: none; }
-        .footer-action { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 15px; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); z-index: 100; }
     </style>
 </head>
 <body>
 
-    <div class="brand-header">
-        <h1>INPUT NILAI EDUNEXA</h1>
-        <p>SISTEM MANAJEMEN NILAI GURU</p>
+<div id="inputArea">
+    <div class="header">
+        <h1>EDUNEXA PRO</h1>
+        <p>Created by Tomy Satria</p>
     </div>
 
-    <div id="inputArea">
-        <div class="card">
-            <h3>Data Pembelajaran</h3>
-            <label>Mata Pelajaran:</label>
-            <select id="mapel">
-                <option value="Agama Islam">Agama Islam</option>
-                <option value="Agama Kristen">Agama Kristen</option>
-                <option value="Pend Pancasila">Pend. Pancasila</option>
-                <option value="B Indonesia">B. Indonesia</option>
-                <option value="IPAS">IPAS</option>
-                <option value="Matematika">Matematika</option>
-                <option value="Seni Budaya">Seni Budaya</option>
-                <option value="B Inggris">B. Inggris</option>
-                <option value="B Jawa">B. Jawa</option>
-                <option value="PJOK">PJOK</option>
-                <option value="Koding">Koding</option>
-            </select>
-            <label>Materi / Jenis Ulangan:</label>
-            <input type="text" id="materi" placeholder="Contoh: Perkalian, UH1, Proyek">
+    <div class="card">
+        <div class="siswa-info-flex">
+            <h3>1. Data Siswa</h3>
+            <span class="jml-badge" id="displayJml">0 Siswa</span>
         </div>
-
-        <div class="card">
-            <h3>Daftar Siswa & Nilai</h3>
-            <div class="info-bar">
-                <span class="jml-siswa" id="displayJml">Jumlah Siswa: 0</span>
-                <button class="btn-update-kecil" onclick="toggleSetup()">+ DATA SISWA</button>
-            </div>
-            <div id="listSiswaContainer" style="margin-top: 10px;"></div>
-        </div>
-
-        <div class="footer-action">
-            <button class="btn-kirim" onclick="prosesKirim()">BAGIKAN DATA SEKARANG</button>
-        </div>
+        <button class="btn-outline" onclick="toggleSetup()">EDIT DAFTAR NAMA</button>
     </div>
 
-    <div id="setupArea">
-        <div class="card">
-            <h3>Update Daftar Siswa</h3>
-            <p style="font-size: 11px; color: #888; margin-bottom: 10px;">Satu nama per baris (Urutan harus sama dengan Excel).</p>
-            <textarea id="rawSiswa" rows="15" placeholder="Masukkan nama siswa..."></textarea>
-            <button class="btn-kirim" onclick="simpanSiswa()">SIMPAN DATA</button>
-            <button class="btn-update-kecil" style="width:100%; margin-top:10px; background:#dc3545;" onclick="toggleSetup()">BATAL</button>
-        </div>
+    <div class="card">
+        <h3>2. Kontrol Mapel</h3>
+        <label>Pilih Mata Pelajaran:</label>
+        <select id="mapel" onchange="refreshRiwayat()">
+            <option>Matematika</option><option>B Indonesia</option><option>IPAS</option>
+            <option>Pend Pancasila</option><option>B Inggris</option><option>Agama</option>
+            <option>Seni Budaya</option><option>PJOK</option><option>Koding</option><option>B Jawa</option>
+        </select>
+        <label>Materi Terinput di Mapel Ini:</label>
+        <div id="riwayatMateri" class="history-box"></div>
     </div>
 
-    <script>
-        let daftarSiswa = JSON.parse(localStorage.getItem('db_edunexa_v11')) || [];
+    <div class="card">
+        <h3>3. Input Nilai Baru</h3>
+        <label>Nama Materi (UH / Tugas / Latihan):</label>
+        <input type="text" id="materi" placeholder="Misal: Perkalian, Tugas 1, dll">
+        <div id="listSiswaContainer"></div>
+    </div>
 
-        function toggleSetup() {
-            const inputArea = document.getElementById('inputArea');
-            const setupArea = document.getElementById('setupArea');
-            if (setupArea.style.display === 'none' || setupArea.style.display === '') {
-                setupArea.style.display = 'block';
-                inputArea.style.display = 'none';
-                document.getElementById('rawSiswa').value = daftarSiswa.join('\n');
-            } else {
-                setupArea.style.display = 'none';
-                inputArea.style.display = 'block';
-            }
+    <div class="footer">
+        <button class="btn-side" onclick="simpanKeHP()">SIMPAN NILAI</button>
+        <button class="btn-main" onclick="bagikanCSV()">EKSPOR CSV</button>
+    </div>
+</div>
+
+<div id="setupArea">
+    <div class="card">
+        <h3>Pengaturan Nama Siswa</h3>
+        <p style="font-size:11px; color:#666;">Masukkan nama satu per baris (Urutan Excel).</p>
+        <textarea id="rawSiswa" rows="18" placeholder="Contoh:&#10;Budi&#10;Ani"></textarea>
+        <button class="btn-main" style="width:100%" onclick="simpanSiswa()">SIMPAN NAMA</button>
+        <button onclick="toggleSetup()" style="width:100%; background:none; color:var(--gray); margin-top:10px;">KEMBALI</button>
+        <button class="btn-danger" onclick="resetSemester()">HAPUS DATABASE NILAI</button>
+    </div>
+</div>
+
+<script>
+    let dbNilai = JSON.parse(localStorage.getItem('db_edunexa_v8')) || {};
+    let daftarSiswa = JSON.parse(localStorage.getItem('db_siswa_v8')) || [];
+
+    function toggleSetup() {
+        const inputArea = document.getElementById('inputArea');
+        const setupArea = document.getElementById('setupArea');
+        if (setupArea.style.display === 'none' || setupArea.style.display === '') {
+            setupArea.style.display = 'block'; inputArea.style.display = 'none';
+            document.getElementById('rawSiswa').value = daftarSiswa.join('\n');
+        } else {
+            setupArea.style.display = 'none'; inputArea.style.display = 'block';
         }
+        window.scrollTo(0,0);
+    }
 
-        function simpanSiswa() {
-            const teks = document.getElementById('rawSiswa').value;
-            daftarSiswa = teks.split('\n').map(s => s.trim()).filter(s => s !== "");
-            localStorage.setItem('db_edunexa_v11', JSON.stringify(daftarSiswa));
-            renderSiswa();
-            toggleSetup();
-        }
+    function simpanSiswa() {
+        const teks = document.getElementById('rawSiswa').value;
+        daftarSiswa = teks.split('\n').map(s => s.trim()).filter(s => s !== "");
+        localStorage.setItem('db_siswa_v8', JSON.stringify(daftarSiswa));
+        renderSiswa(); toggleSetup();
+    }
 
-        function renderSiswa() {
-            const container = document.getElementById('listSiswaContainer');
-            const displayJml = document.getElementById('displayJml');
-            container.innerHTML = "";
-            displayJml.innerText = "Jumlah Siswa: " + daftarSiswa.length;
+    function renderSiswa() {
+        const container = document.getElementById('listSiswaContainer');
+        container.innerHTML = "";
+        document.getElementById('displayJml').innerText = daftarSiswa.length + " Siswa";
+        
+        daftarSiswa.forEach((nama, idx) => {
+            const row = document.createElement('div');
+            row.className = 'siswa-row';
+            row.innerHTML = `
+                <div class="nama-siswa">${idx + 1}. ${nama}</div>
+                <input type="number" class="nilai-input" placeholder="0" 
+                    inputmode="numeric" onfocus="this.select()" 
+                    onkeydown="pindahBaris(event, ${idx})">`;
+            container.appendChild(row);
+        });
+        refreshRiwayat();
+    }
 
-            daftarSiswa.forEach((nama) => {
-                const row = document.createElement('div');
-                row.className = 'siswa-row';
-                row.innerHTML = `<div class="nama-siswa">${nama}</div><input type="number" class="nilai-input" placeholder="0" inputmode="numeric">`;
-                container.appendChild(row);
-            });
-        }
-
-        async function prosesKirim() {
-            const mapel = document.getElementById('mapel').value;
-            const materi = document.getElementById('materi').value.trim() || "Nilai";
+    function pindahBaris(e, index) {
+        if (e.key === "Enter") {
+            e.preventDefault();
             const inputs = document.querySelectorAll('.nilai-input');
-            
-            // Susun data CSV
-            let csvContent = "";
-            let textContent = `*Nilai ${mapel} - ${materi}*\n\n`; // Cadangan teks
-            
-            inputs.forEach(inp => {
-                let n = inp.value || "0";
-                csvContent += n + "\n";
-                textContent += n + "\n";
+            if (inputs[index + 1]) inputs[index + 1].focus();
+        }
+    }
+
+    function refreshRiwayat() {
+        const mapel = document.getElementById('mapel').value;
+        const box = document.getElementById('riwayatMateri');
+        box.innerHTML = "";
+        if (dbNilai[mapel] && Object.keys(dbNilai[mapel]).length > 0) {
+            Object.keys(dbNilai[mapel]).forEach(m => {
+                const b = document.createElement('span');
+                b.className = 'badge'; b.innerText = m; box.appendChild(b);
             });
+        } else {
+            box.innerHTML = "<span style='color:#ccc; font-size:11px;'>Belum ada data materi.</span>";
+        }
+    }
 
-            const rawFilename = `Nilai_${mapel}_${materi}`;
-            const cleanFilename = rawFilename.replace(/\s+/g, '_') + ".csv";
-            const file = new File([csvContent], cleanFilename, { type: 'text/csv' });
+    function simpanKeHP() {
+        const mapel = document.getElementById('mapel').value;
+        const materi = document.getElementById('materi').value.trim();
+        if (!materi) return alert("Tuliskan nama Materinya dulu!");
 
-            // STRATEGI 1: Fitur Share Asli HP
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        files: [file],
-                        title: 'Kirim Nilai',
-                        text: `Data Nilai ${mapel} materi ${materi}`
-                    });
-                    resetForm();
-                    return; 
-                } catch (err) {
-                    console.log("Share file gagal/dibatalkan.");
-                }
-            }
+        if (dbNilai[mapel] && dbNilai[mapel][materi]) {
+            if (!confirm("Materi '" + materi + "' sudah ada. Perbarui data?")) return;
+        }
+        
+        const inputs = document.querySelectorAll('.nilai-input');
+        let nilai = Array.from(inputs).map(inp => inp.value || "0");
 
-            // STRATEGI 2: Jika Share File Gagal, Kirim via Teks WhatsApp (Sangat Stabil di APK)
-            const waLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(textContent)}`;
-            window.open(waLink, '_blank');
-            
-            // Sambil buka WA, kita juga download filenya sebagai backup
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
+        if (!dbNilai[mapel]) dbNilai[mapel] = {};
+        dbNilai[mapel][materi] = nilai;
+
+        localStorage.setItem('db_edunexa_v8', JSON.stringify(dbNilai));
+        alert("✅ Berhasil disimpan!");
+        
+        document.getElementById('materi').value = ""; 
+        inputs.forEach(inp => inp.value = "");
+        refreshRiwayat();
+        window.scrollTo(0,0);
+    }
+
+    function resetSemester() {
+        if(confirm("Hapus semua riwayat nilai? (Daftar nama tetap aman)")) {
+            dbNilai = {};
+            localStorage.setItem('db_edunexa_v8', JSON.stringify(dbNilai));
+            renderSiswa(); toggleSetup();
+        }
+    }
+
+    async function bagikanCSV() {
+        const mapel = document.getElementById('mapel').value;
+        if (!dbNilai[mapel] || Object.keys(dbNilai[mapel]).length === 0) return alert("Data kosong!");
+
+        let materis = Object.keys(dbNilai[mapel]);
+        let csv = "Nama;" + materis.join(";") + "\n";
+        
+        daftarSiswa.forEach((nama, idx) => {
+            let row = nama;
+            materis.forEach(m => { row += ";" + (dbNilai[mapel][m][idx] || "0"); });
+            csv += row + "\n";
+        });
+
+        const file = new File([csv], `Rekap_${mapel}.csv`, { type: 'text/csv' });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: 'Data Nilai' }).catch(() => {});
+        } else {
             const a = document.createElement('a');
-            a.href = url;
-            a.download = cleanFilename;
+            a.href = URL.createObjectURL(file);
+            a.download = `Rekap_${mapel}.csv`;
             a.click();
-            
-            alert("Sistem APK membatasi Share langsung. \n1. WhatsApp terbuka (Kirim teks nilai)\n2. File CSV otomatis terdownload.");
-            resetForm();
         }
+    }
 
-        function resetForm() {
-            document.querySelectorAll('.nilai-input').forEach(inp => inp.value = "");
-            document.getElementById('materi').value = "";
-            window.scrollTo(0, 0);
-        }
-
-        renderSiswa();
-    </script>
+    renderSiswa();
+</script>
 </body>
 </html>
